@@ -1,8 +1,5 @@
 package models;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.util.UUID;
 
 /**
@@ -46,6 +43,16 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public void setUsername(String username) {
+        this.username=username;
+    }
+    public void setPassword(String password) {
+        this.password=password;
+    }
+    public void setEmail(String email) {
+        this.email=email;
     }
 
     public UserDirectory getUserDirectory(){
