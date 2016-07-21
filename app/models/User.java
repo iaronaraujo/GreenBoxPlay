@@ -14,6 +14,10 @@ public class User {
     private UserDirectory userdirectory;
     private String email, username, password;
 
+    public User(){
+
+    }
+
     public User(String email, String username, String password){
         this.uuid = UUID.randomUUID();
         this.userdirectory = new UserDirectory(username);

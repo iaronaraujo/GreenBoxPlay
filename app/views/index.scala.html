@@ -1,20 +1,44 @@
-@*
- * This template takes a single argument, a String containing a
- * message to display.
- *@
-@(message: String)
+@(userList : List[User])
 
-@*
- * Call the `main` template with two arguments. The first
- * argument is a `String` with the title of the page, the second
- * argument is an `Html` object containing the body of the page.
- *@
-@main("Welcome to Play") {
+    @main("Greenbox") {
+        <div align="center" class="well" style="background-color: #96ff7f;">
+            <h1><big>GreenBox</big></h1>
+        </div>
 
-    @*
-     * Get an `Html` object by calling the built-in Play welcome
-     * template and passing a `String` message.
-     *@
-    @play20.welcome(message, style = "Java")
+        <div align="center">
+            <h4>Use your GreenBox account</h4>
+        </div>
+
+            <!-- PRECISA AJEITAR OS <BR>?-->
+        <form name="Login" >
+            <div align="center">
+                <input type="text" name="email" placeholder="Email Address"/><br>
+                <input type="password" name="password" placeholder="Password"/><br>
+                <button type="submit"> Login </button>
+            </div>
+        </form>
+
+        <form name="Register" method ="GET" action="@routes.HomeController.register()">
+            <div align="center">
+                <button type="submit"> Register </button>
+            </div>
+        </form>
+
+    <h2>User list</h2>
+
+    <table border = "2">
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Password</th>
+        </tr>
+        @for(user <- userList){
+            <tr>
+                <td>@user.getUsername()</td>
+                <td>@user.getEmail()</td>
+                <td>@user.getPassword()</td>
+            </tr>
+        }
+    </table>
 
 }

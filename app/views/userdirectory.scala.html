@@ -1,0 +1,24 @@
+@(user: User)
+
+@main("Green Box") {
+
+    <div align="left" class="well" style="background-color: #96ff7f;">
+        <h1>Welcome to GreenBox</h1>
+    </div>
+
+    <h2>Hello @user.getUsername, you it is now a GreenBoxer! </h2>
+
+        <form method="GET" enctype="multipart/form-data">
+            <input type="file" name="File" id="File"><br>
+            <input type="submit" value="Upload">
+            <input type="reset" value="Cancel">
+        </form>
+
+        <form name="Log out" method ="GET" action="@routes.HomeController.index()">
+        <div align="left">
+            <button type="submit"> Log out </button>
+        </div>
+    </form>
+
+
+}
