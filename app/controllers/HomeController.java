@@ -47,12 +47,29 @@ public class HomeController extends Controller {
 
     public Result login() {
         User user = formFactory.form(User.class).bindFromRequest().get();
-        return ok(userdirectory.render(getUser(user)));
+
+        if (isValidUser(user)) {
+            return ok(userdirectory.render(getUser(user)));
+        } else {
+            return ok(usernotfound.render());
+        }
+    }
+
+    // Method to check if the user exists
+    private boolean isValidUser(User checkingUser) {
+        for (User user : userList) {
+            //This shouldn't be checked like this, but it works for now.
+           if (user.getEmail().equals(checkingUser.getEmail()) && user.getPassword().equals(checkingUser.getPassword())) {
+               return true;
+           }
+        }
+
+        return false;
     }
 
     private User getUser(User user) {
         for (User usercopy: userList) {
-            if ( usercopy.getPassword().equals(user.getPassword()) && usercopy.getEmail().equals(user.getEmail()) ) {
+            if ( usercopy.getPassword().equals(user.getPassword()) && (usercopy.getEmail().equals(user.getEmail())) ) {
                 return user;
             }
         }
