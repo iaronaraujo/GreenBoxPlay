@@ -45,4 +45,18 @@ public class HomeController extends Controller {
         return ok(register.render());
     }
 
+    public Result login() {
+        User user = formFactory.form(User.class).bindFromRequest().get();
+        return ok(userdirectory.render(getUser(user)));
+    }
+
+    private User getUser(User user) {
+        for (User usercopy: userList) {
+            if ( usercopy.getPassword().equals(user.getPassword()) && usercopy.getEmail().equals(user.getEmail()) ) {
+                return user;
+            }
+        }
+        return null;
+    }
+
 }
